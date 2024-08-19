@@ -1,0 +1,45 @@
+name: Testing hdiutil 1
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-create-dmg:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['macos-latest','macos-13']
+        
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Xcode
+      run: sudo xcode-select -s /Applications/Xcode_15.2.app
+
+    - name: Build Xcode project
+      run: | 
+        xcodebuild clean build -project Sample.xcodeproj -scheme Sample -configuration Release -derivedDataPath build
+        
+    - name: Create a disk image using create-dmg
+      run: |
+        mkdir -p output
+        create-dmg \
+          --volname "Sample" \
+          --window-pos 100 100 \
+          --window-size 480 582 \
+          --icon-size 128 \
+          --icon "Sample.app" 240 108 \
+          --app-drop-link 240 332 \
+          output/Sample.dmg \
+          build/Build/Products/Release/Sample.app
+
+    - name: Upload disk image
+      uses: actions/upload-artifact@v3
+      with:
+        name: Sample.dmg
+        path: output/Sample.dmg
+          
+          
