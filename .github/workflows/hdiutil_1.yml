@@ -21,25 +21,25 @@ jobs:
 
     - name: Build Xcode project
       run: | 
-        xcodebuild clean build -project Sample.xcodeproj -scheme Sample -configuration Release -derivedDataPath build
+        xcodebuild clean build -project Sample_2.xcodeproj -scheme Sample_2 -configuration Release -derivedDataPath build
         
     - name: Create a disk image using create-dmg
       run: |
         mkdir -p output
         create-dmg \
-          --volname "Sample" \
+          --volname "Sample_2" \
           --window-pos 100 100 \
           --window-size 480 582 \
           --icon-size 128 \
-          --icon "Sample.app" 240 108 \
+          --icon "Sample_2.app" 240 108 \
           --app-drop-link 240 332 \
-          output/Sample.dmg \
-          build/Build/Products/Release/Sample.app
+          output/Sample_2.dmg \
+          build/Build/Products/Release/Sample_2.app
 
     - name: Upload disk image
       uses: actions/upload-artifact@v3
       with:
-        name: Sample.dmg
-        path: output/Sample.dmg
+        name: Sample_2.dmg
+        path: output/Sample_2.dmg
           
           
