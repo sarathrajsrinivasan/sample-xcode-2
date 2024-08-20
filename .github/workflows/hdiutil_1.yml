@@ -21,7 +21,7 @@ jobs:
 
     - name: Build Xcode project
       run: | 
-        xcodebuild clean build -project Sample_2.xcodeproj -scheme Sample_2 -configuration Release -derivedDataPath build
+        xcodebuild clean build -project Sample_2.xcodeproj -scheme Sample_2 -configuration Debug -derivedDataPath build -sdk iphonesimulator
         
     - name: Create a disk image using create-dmg
       run: |
