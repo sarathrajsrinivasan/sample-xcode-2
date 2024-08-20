@@ -38,7 +38,7 @@ jobs:
           --icon "Sample_2.app" 240 108 \
           --app-drop-link 240 332 \
           output/Sample_2.dmg \
-          'build/'
+          build/Sample_2.app
 
     - name: Upload disk image
       uses: actions/upload-artifact@v3
