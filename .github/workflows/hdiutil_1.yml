@@ -23,11 +23,6 @@ jobs:
       run: | 
         xcodebuild clean build -project Sample_2.xcodeproj -scheme Sample_2 -configuration Debug -derivedDataPath build -sdk iphonesimulator
 
-    - name: Check path
-      run: |
-        cd build/Build/Products/Debug-iphonesimulator/
-        ls -ltr
-
     - name: Install create-dmg
       run: |
         brew install create-dmg
