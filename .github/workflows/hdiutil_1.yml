@@ -37,8 +37,7 @@ jobs:
           --icon-size 128 \
           --icon "Sample_2.app" 240 108 \
           --app-drop-link 240 332 \
-          output/Sample_2.dmg \
-          build/Build/Products/Debug/Sample_2.app
+          output/Sample_2.dmg
 
     - name: Upload disk image
       uses: actions/upload-artifact@v3
