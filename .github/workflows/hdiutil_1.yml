@@ -25,7 +25,7 @@ jobs:
 
     - name: Check path
       run: |
-        cd build/Build/
+        cd build/Build/Products/
         ls -ltr
         
     - name: Install create-dmg
