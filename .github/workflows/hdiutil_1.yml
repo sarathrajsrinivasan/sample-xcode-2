@@ -44,6 +44,7 @@ jobs:
 
     - name: Build Xcode project
       run: | 
+        sudo xcodebuild -downloadPlatform iOS
         xcodebuild clean build -project Sample_2.xcodeproj -scheme Sample_2 -configuration Debug -derivedDataPath build -sdk iphonesimulator18.0
 
     - name: Install create-dmg
