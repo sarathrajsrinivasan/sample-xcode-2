@@ -19,7 +19,7 @@ jobs:
     - name: Create a disk image
       run: |
         mkdir -p output
-        hdiutil create -volname SampleDisk -srcfolder ./Sample -ov -format UDZO ./output/SampleDisk.dmg
+        hdiutil create -volname Sample_2 -srcfolder ./Sample_2 -ov -format UDZO ./output/Sample_2_hdiutil.dmg
       
     - name: Upload disk image
       uses: actions/upload-artifact@v3
