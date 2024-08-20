@@ -30,7 +30,7 @@ jobs:
     - name: Create a disk image using create-dmg
       run: |
         mkdir -p output
-        create-dmg \
+        create-dmg 'build/Sample_2.app' \
           --volname "Sample_2" \
           --window-pos 100 100 \
           --window-size 480 582 \
