@@ -27,3 +27,26 @@ jobs:
       run: |
         cd build/Build/Products/Debug-iphonesimulator/
         ls -ltr
+
+    - name: Install create-dmg
+      run: |
+        brew install create-dmg
+        
+    - name: Create a disk image using create-dmg
+      run: |
+        mkdir -p output
+        create-dmg \
+          --volname "Sample_2" \
+          --window-pos 100 100 \
+          --window-size 480 582 \
+          --icon-size 128 \
+          --icon "Sample_2.app" 240 108 \
+          --app-drop-link 240 332 \
+          output/Sample_2.dmg \
+          build/Build/Products/Debug-iphonesimulator/Sample_2.app
+
+    - name: Upload disk image
+      uses: actions/upload-artifact@v3
+      with:
+        name: Sample_2.dmg
+        path: output/Sample_2.dmg
