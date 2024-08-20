@@ -4,6 +4,29 @@ on:
   workflow_dispatch:
 
 jobs:
+  build-hdiutil-create:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['macos-latest','macos-13']
+        
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Create a disk image
+      run: |
+        mkdir -p output
+        hdiutil create -volname SampleDisk -srcfolder ./Sample -ov -format UDZO ./output/SampleDisk.dmg
+      
+    - name: Upload disk image
+      uses: actions/upload-artifact@v3
+      with:
+        name: SampleDisk.dmg
+        path: output/SampleDisk.dmg
+        
   build-and-create-dmg:
     strategy:
       fail-fast: false
