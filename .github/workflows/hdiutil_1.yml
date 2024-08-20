@@ -25,5 +25,5 @@ jobs:
 
     - name: Check path
       run: |
-        cd build/Build/Products/
+        cd build/Build/Products/Debug-iphonesimulator/
         ls -ltr
