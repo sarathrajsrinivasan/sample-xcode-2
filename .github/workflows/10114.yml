@@ -1,0 +1,40 @@
+name: Testing 10114
+
+on:
+  workflow_dispatch:
+    
+jobs:
+
+  build-and-create-dmg:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['macos-14']
+        
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Xcode
+      run: | 
+        sudo xcode-select -s /Applications/Xcode_16.1.app
+
+    - name: temp
+      run: | 
+        xcodebuild -showsdks
+
+    - name: Build Xcode project
+      run: | 
+        xcodebuild clean build \
+          -project Sample_2.xcodeproj \
+          -scheme Sample_2 \
+          -configuration Debug \
+          -derivedDataPath build \
+          -sdk iphonesimulator
+
+    - name: Validate
+      run: |
+        cd build/Build/Products/Debug-iphonesimulator/
+        ls -ltr
