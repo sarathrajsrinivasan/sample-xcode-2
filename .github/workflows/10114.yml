@@ -19,6 +19,8 @@ jobs:
 
     - name: Set up Xcode
       run: | 
+        cd /Applications/
+        ls -ltr
         sudo xcode-select -s /Applications/Xcode_16.1.app
 
     - name: temp
